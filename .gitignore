@@ -102,6 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+<<<<<<< HEAD
 
 # IDEA config files
 .idea/
@@ -115,3 +116,5 @@ shop/migrations
 # Media files
 shop/media
 shop/static/images
+=======
+>>>>>>> 90e72a0843ce242c8460104a08e1a5cdbbddada4
