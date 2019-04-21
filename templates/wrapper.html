@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Car details shop</title>
+    <link href="{% static 'css/bootstrap-4.0.0.css' %}" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse">
+  	<ul class="navbar-nav mr-auto p-1">
+	  <li class="nav-item"><img src="{% static 'images/logo.png' %}" alt="logo" width="101" height="101" class="img-fluid"></li>
+	  <li class="nav-item mr-auto"><a class="navbar-brand pl-2" href="/">Car Details Shop</a></li>
+	  <li class="nav-item mr-auto"><a class="nav-link" href="/delivery">Доставка</a></li>
+	  <li class="nav-item mr-auto"><a class="nav-link" href="payment">Оплата</a></li>
+	  <li class="nav-item mr-auto"><a class="nav-link" href="/suppliers">Поставщики</a></li>
+	  <li class="nav-item mr-auto"><a class="nav-link" href="/contacts">Контакты</a></li>
+	  <li class="nav-item mr-auto"><a class="nav-link" href="/about">О нас</a></li>
+	</ul>
+		<div class="btn-group">
+<button type="button" class="btn btn-sm btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Караганда
+	  </button>
+	  <div class="dropdown-menu dropdown-menu-right text-right">
+		<button class="dropdown-item" type="button">Выбрать другой город</button>
+	  </div>
+	</div>
+	</div>
+</nav>
+{% block content %}
+{% endblock %}
+      <footer class="modal-footer">
+        <div class="container text-white" style="font-size: 20px">
+          <div class="float-left">
+            <h4>Наши контакты:</h4>
+            +7-777-123-56-78<br>
+            example@mail.com </div>
+            <div class="float-right">
+          <h4>Мы в социальных сетях</h4>
+          <div class="row float-right">
+              <div class="col"><a href="https:\\vk.com"><img src="{% static 'images/vk logo.png' %}" alt="VK" width="50" height="50" class="img-fluid" ></a></div>
+              <div class="col"><a href="https:\\instagram.com"><img src="{% static 'images/ig_logo.png' %}" alt="IG" width="50" height="50" class="img-fluid"></a></div>
+              <div class="col"><a href="https:\\facebook.com"><img src="{% static 'images/fb logo.png' %}" alt="FB" width="50" height="50" class="img-fluid"> </a></div>
+            </div>
+          </div>
+		</div>
+      </footer>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap-4.0.0.js' %}"></script>
+    <script>
+        $(document).on('submit', '#report-form', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/report',
+                data: {
+                    name:$('#name').val(),
+                    comment:$('#comment').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function () {
+                    $(':input','#report-form')
+                    .not(':button, :submit, :reset, :hidden')
+                    .val('')
+                    .prop('checked', false)
+                    .prop('selected', false);
+                    $('#exampleModalCenter').modal('toggle')
+                },
+                error:function () {
+                  console.log('Что-то пошло не так')
+                }
+            })
+        })
+    </script>
+</body>
+</html>
