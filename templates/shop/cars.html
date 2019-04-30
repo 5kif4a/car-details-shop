@@ -1,0 +1,27 @@
+{% extends "wrapper.html" %}
+{% load static %}
+{% block content %}
+<div class="container w-75 p-1">
+{% if products|length %}
+<h3>Детали для {{ mark }}</h3>
+{% for el in products %}
+  <div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{% if el.img %}{{ el.img.url }}{% endif %}" class="card-img img-thumbnail" width="300" height="200" alt="img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+          <h4 class="card-title">{{ el.name }} {{ el.vehicle_id }} - {{ el.price }} ₸</h4>
+        <p class="card-text">{{ el.description }}</p>
+        <a href="#" class="card-link">Смотреть товар</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+    <h3>В данный момент нету деталей для этой марки машины</h3>
+{% endif %}
+</div>
+{% endblock %}

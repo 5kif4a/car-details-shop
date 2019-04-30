@@ -50,8 +50,8 @@ class OtherAdmin(admin.ModelAdmin):
     list_display = get_model_fields(Other)
 
 
-@admin.register(Report)
-class ReportAdmin(admin.ModelAdmin):
-    list_display = get_model_fields(Report)
-    readonly_fields = ['name', 'text']
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = get_model_fields(Review)
+    readonly_fields = ['name', 'comment', 'time']
 

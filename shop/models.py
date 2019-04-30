@@ -1,8 +1,8 @@
 from django.db import models
+import datetime
+
 
 # Create your models here.
-
-
 class VehicleType(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -17,6 +17,7 @@ class VehicleType(models.Model):
 class Mark(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50)
+    link_name = models.CharField(max_length=50, null=True)
 
     class Meta:
         ordering = ['name']
@@ -90,10 +91,11 @@ class Other(models.Model):
         return self.name
 
 
-class Report(models.Model):
+class Review(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    text = models.TextField(null=True)
+    comment = models.TextField(null=True)
+    time = models.TimeField(auto_now_add=True, null=True)
 
     class Meta:
         ordering = ['name']
